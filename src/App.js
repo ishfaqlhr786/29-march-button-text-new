@@ -9,18 +9,18 @@ export const App = () => {
     {id:3,text: "button3"},
     {id:4,text:"button4"}
   ])
-  const handleInput=(e,txt,id)=>{
-    setId(id)
+  const handleInput=(txt,index)=>{
+    setId(index)
 
     setInput(txt)
   }
-  const handleBtn=(e,txt)=>{
-   console.log("text reset",txt)
-   console.log("id is",id)
+  const handleBtn=()=>{
+  //  console.log("text reset",txt)
+  //  console.log("id is",id)
    let newData=[...data]
    console.log("newData is",newData)
-   const ind=newData.findIndex(p=>p.id===id)
-   newData[ind].text= txt
+   //const ind=newData.findIndex(p=>p.id===id)
+   newData[id].text= input
    setData(newData)
    setInput("")
 
@@ -29,10 +29,10 @@ export const App = () => {
     <div style={{textAlign:"center"}}>
       <h2>button text</h2>
       {
-        data.map(btn=>{
+        data.map((btn,index)=>{
           return (<>
           <button>{btn.text}</button><br/><br/>
-          <button onClick={(e)=>handleInput(e,btn.text,btn.id)}>Click Me</button>
+          <button onClick={()=>handleInput(btn.text,index)}>Click Me</button>
           <br/>
           <br/>
           <br/>
@@ -46,7 +46,7 @@ export const App = () => {
         setInput(e.target.value)
       }
       }/>
-      <button  onClick={(e)=>handleBtn(e,input)}>Save</button>
+      <button  onClick={()=>handleBtn()}>Save</button>
     </div>
   )
 }
